@@ -5,7 +5,7 @@ import "github.com/tidwall/gjson"
 import "github.com/json-iterator/go"
 import "github.com/buger/jsonparser"
 
-const json = `{"name":{"first":"Shuhu","last":"Liu"},"age":39}`
+const json = `{"name":{"first":"Tiger","last":"Liu"},"age":39}`
 
 func main() {
   // var a int = 10
