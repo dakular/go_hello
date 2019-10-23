@@ -10,6 +10,8 @@ import (
 )
 
 func main() {
+	http.HandleFunc("/", homepage)
+
 	http.HandleFunc("/hello", hello)
 
 	http.HandleFunc("/weather/", weather)
@@ -21,6 +23,10 @@ func main() {
 
 	http.ListenAndServe(":8008", nil)
 
+}
+
+func homepage(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("I am Go server"))
 }
 
 func hello(w http.ResponseWriter, r *http.Request) {
