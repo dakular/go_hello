@@ -1,0 +1,20 @@
+<html>
+<head>
+<title>{{ .title }}</title>
+</head>
+<body>
+<h3>{{ .title }}</h3>
+<div>{{ .content }}</div>
+<div>
+  <a href="/ping">/ping</a><br>
+  <a href="/user/Tiger?date=2019-12-31">/user/Tiger?date=2019-12-31</a><br>
+  <br>
+  <form action="/user/create" method="POST">
+    <input type="text" name="csrf_token" value="{{ .csrf_token }}" /><br>
+    <input type="text" name="username" value="Tiger Liu" /><br>
+    <input type="password" name="password" value="888888" /><br>
+    <button type="submit">OK</button>
+  </form>
+</div>
+</body>
+</html>
