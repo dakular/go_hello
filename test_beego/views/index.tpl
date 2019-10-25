@@ -94,9 +94,8 @@
     <div class="description">
       <a href="{{urlfor "UserController.ListUser"}}">{{urlfor "UserController.ListUser"}}</a>
       <a href="/api/user/123">/api/user/123</a>
-      <a href="/api/test?name=Tiger">/api/test?name=Tiger</a>
       <a href="/api/get">/api/get</a>
-      <a href="/api/any">/api/any</a>
+      <a href="/api/any?name=Tiger">/api/any?name=Tiger</a>
       <a href="/download/test.txt">/download/test.txt</a>
     </div>
     <div class="description">
