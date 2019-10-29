@@ -9,7 +9,8 @@ func main() {
 	app.Use(myMiddleware)
 
 	// 注册模板
-	app.RegisterView(iris.HTML("./views", ".html"))
+	tmpl := iris.HTML("./views", ".html")
+	app.RegisterView(tmpl)
 
 	// 自定义错误页面
 	app.OnErrorCode(iris.StatusNotFound, notFound)
