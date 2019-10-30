@@ -10,7 +10,11 @@
       <a href="/user/9527">/user/9527</a><br>
       <a href="/api/any">/api/any</a><br>
       <a href="/api/any/duckula?id=123&datetime=2019-12-31">/api/any/duckula?id=123&datetime=2019-12-31</a><br>
-      <form action="/api/any" method="post">
+      <a href="/api/json">/api/json</a><br>
+      <a href="/api/sql">/api/sql</a><br>
+      <a href="/test/form">/test/form</a><br>
+      <form action="/api/post" method="post">
+        {{.csrfField}}
         <input type="text" name="username" value="Tiger" />
         <button type="submit">OK</button>
       </form>

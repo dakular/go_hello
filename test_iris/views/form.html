@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>Duckula | Iris</title>
+</head>
+<body>
+    <h3>test form</h3>
+    <div>
+      <form action="/api/post" method="post">
+        {{.csrfField}}
+        <input type="text" name="username" value="Tiger" placeholder="username" />
+        <button type="submit">OK</button>
+      </form>
+    </div>
+    <h3>test ajax</h3>
+    <div>
+      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+      <form action="/api/post" id="myForm">
+        <input type="hidden" name="csrf.Token" value="{{.token}}">
+        <input type="text" name="username" value="Tiger" placeholder="username">
+        <input type="submit" value="OK">
+      </form>
+    </div>
+<script>
+// Attach a submit handler to the form
+$("#myForm" ).submit(function( event ) {
+
+  // Stop form from submitting normally
+  event.preventDefault();
+
+  // Get some values from elements on the page:
+  var $form = $( this ),
+  token = $form.find( "input[name='csrf.Token']" ).val(),
+  username = $form.find( "input[name='username']" ).val(),
+    url = $form.attr( "action" );
+
+  // Send the data using post
+  var posting = $.post( url, { username: username, 'csrf.Token':token } );
+
+  // Put the results in a div
+  posting.done(function( data ) {
+    console.log(data)
+    alert(data.code+' , '+data.msg+' , '+data.data)
+  });
+});
+</script>
+</script>
+</body>
+</html>
