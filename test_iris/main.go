@@ -64,7 +64,7 @@ func main() {
 	api.Get("/json", apiHandlerJson)
 	api.Get("/sql", apiHandlerSql)
 
-	app.Run(iris.Addr(":8080"))
+	app.Run(iris.Addr(":8008"))
 }
 
 func notFound(ctx iris.Context) {

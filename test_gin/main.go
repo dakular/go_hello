@@ -1,12 +1,14 @@
 package main
 
-import "github.com/gin-gonic/gin"
-import "net/http"
-import "fmt"
-import "io/ioutil"
-import "encoding/json"
-import "log"
-import "github.com/justinas/nosurf"
+import (
+	"encoding/json"
+	"fmt"
+	"github.com/gin-gonic/gin"
+	"github.com/justinas/nosurf"
+	"io/ioutil"
+	"log"
+	"net/http"
+)
 
 type Data struct {
 	Datetime    string  `json:"datetime"`
@@ -27,20 +29,29 @@ func main() {
 	router.GET("/", func(c *gin.Context) {
 		// c.String(http.StatusOK, "Gin Home")
 		c.HTML(200, "index.tmpl", gin.H{
-			"title":      "Duckula + Gin",
+			"title":      "DUCKULA + Gin",
 			"content":    "Gin Home",
 			"csrf_token": nosurf.Token(c.Request),
 		})
 	})
 
 	router.GET("/ping", func(c *gin.Context) {
-		data := getPM()
 		c.JSON(http.StatusOK, gin.H{
 			"code":    200,
 			"message": "pong",
+		})
+	}, middleware1)
+
+	router.GET("/getapi", func(c *gin.Context) {
+		data := getPM()
+		c.JSON(http.StatusOK, gin.H{
+			"code":    200,
+			"message": "ok",
 			"data": gin.H{
-				"datetime": data["datetime"],
-				"pm25":     data["pm25"],
+				"datetime":    data["datetime"],
+				"temperature": data["temperature"],
+				"humidity":    data["humidity"],
+				"pm25":        data["pm25"],
 			},
 		})
 	}, middleware1)
@@ -61,8 +72,8 @@ func main() {
 		c.String(http.StatusOK, "username %s password %s", username, password)
 	}, middleware1)
 
-	// router.Run(":8080") // listen and serve on 0.0.0.0:8080
-	http.ListenAndServe(":8080", csrf)
+	// router.Run(":8008") // listen and serve on 0.0.0.0:8008
+	http.ListenAndServe(":8008", csrf)
 }
 
 func middleware1(c *gin.Context) {
@@ -78,7 +89,7 @@ func csrfFailHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func getPM() map[string]interface{} {
-	api := "http://duckula.net:66/env"
+	api := "https://duckula.net:88/env"
 	data := Data{}
 	var data2 map[string]interface{}
 	resp, _ := http.Get(api)
