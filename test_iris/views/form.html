@@ -31,7 +31,7 @@ $("#myForm" ).submit(function( event ) {
   var $form = $( this ),
   token = $form.find( "input[name='csrf.Token']" ).val(),
   username = $form.find( "input[name='username']" ).val(),
-    url = $form.attr( "action" );
+  url = $form.attr( "action" );
 
   // Send the data using post
   var posting = $.post( url, { username: username, 'csrf.Token':token } );
